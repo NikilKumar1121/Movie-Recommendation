@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+    <head>
+    <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>Movie Recommendation</title>
+        <style>
+        .box{
+        width: 100%;
+        text-align:center;}
+        </style>
+
+    </head>
+    <body>
+  	    <h1 style = 'text-align:center'>Movie Recommendation System</h1>
+        <hr>
+        <br>
+        <br>
+        <h3 style='text-align:center'>Search for a Movie</h3>
+        <br>
+        {% if error %}
+            <p class=error style='text-align:center; color:red'><strong>Error:</strong> {{ error }}
+        {% endif %}
+        <form action="./omdb.html" method="POST">
+        <div class = "box">
+            <input type="text" name="title" id="title" placeholder="Enter the Movie Name" required="required" />
+            <input type="submit" class="btn btn-primary" value='Submit'>
+        </div>
+        </form>
+        <hr>
+        <br>
+        <br>
+  	    <h3 style = 'text-align:center'>Movie Recommendation Based on User Activity</h3>  
+        <br>   
+        <form action="./recommend.html" method="POST">
+        <div class = "box">
+    	    <input type="/text" id="User" name="User" placeholder="Enter the User id">
+            <input type="/text" id="Movie" name="Movie" placeholder="Enter the movie id">
+            <input type="submit" class="btn btn-primary" value='Submit'>
+        </div>
+        </form>
+        <hr>
+        <br>
+        <br>
+        <h3 style = 'text-align:center'>Top 20 Movies Based on Genre</h3>
+        <br>
+        <form action="./top_genre.html" method="POST">
+        <div class = "box">
+            <select type='/text' id="Genre" name="Genre">
+                <option value="Comedy">Comedy</option>
+                <option value="Action">Action</option>
+                <option value="Crime">Crime</option>
+                <option value="Children">Children</option>
+                <option value="Drama">Drama</option>
+                <option value="Adventure">Adventure</option>
+                <option value="Horror">Horror</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Animation">Animation</option>
+                <option value="Documentary">Documentary</option>
+                <option value="Romance">Romance</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Musical">Musical</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Film-Noir">Film-Noir</option>
+                <option value="Western">Western</option>
+                <option value="War">War</option>
+            </select> 
+            <input type="submit" class="btn btn-primary" value='Submit'>
+        </div>
+        </form>
+    </body>
+</html>

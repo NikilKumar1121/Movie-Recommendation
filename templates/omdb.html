@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Movie Recommendation</title>
+    <style>
+        #details {
+	        margin-left: 50px;
+            margin-right: 50px;}
+    
+        #name {
+	    color: red;
+	    padding: 1px;}
+    
+        .poster{
+        -webkit-box-shadow: 0px 1px 15px 4px rgba(250,250,250,1);
+        -moz-box-shadow: 0px 1px 15px 4px rgba(250,250,250,1); 
+        box-shadow: 0px 1px 15px 4px rgba(250,250,250,1);}
+        .movie-content {
+	        display: flex;
+	        flex-wrap: wrap;
+	        justify-content:space-around;}
+
+        .movie-content > div {
+            margin:20px;}
+        .card:hover {
+	        cursor: pointer;
+        }
+        .castcard:hover {
+            cursor: pointer;
+        }
+        .fig {
+	        display: flex;
+	        align-items: center;
+	        justify-content: center;
+	        backdrop-filter: brightness(50%);
+	        position: absolute;
+	        bottom: 0px;
+	        top: 0px;
+	        right: 0px;
+	        left: 0px;
+	        opacity: 0;
+	        -moz-transition: all 0.75s ease;
+            -webkit-transition: all 0.75s ease;
+            transition: all 0.75s ease;
+        }
+        .fig:hover {
+	        opacity: 1;
+	        backdrop-filter:br;
+	        -moz-transition: all 0.75s ease;
+            -webkit-transition: all 0.75s ease;
+            transition: all 0.75s ease;
+        }
+        .card-btn {
+	        border-radius: 20px;
+        }
+    </style>
+    
+</head>
+
+<body>
+	<center>
+	    <h2 id="name" class="text-uppercase">{{Movie_Title}}</h2>
+	</center>
+	<br>
+    <div id="details">
+        <br/>
+        <img class="poster" style="border-radius: 40px;margin-bottom: 5%; float: right;" height="400" width="250" src={{Poster_url}}>
+        <div clear=right>
+            <h6 style="color:red;">TITLE: &nbsp;<span style="color: black;">{{Movie_Title}}</span></h6>
+            <h6 style="color:red;">IMDB RATING: &nbsp;<span style="color: black;">{{Imdb_Ratings}}/10 ({{Imdb_votes}} votes)</span></h6>
+            <h6 style="color:red;">GENRE: &nbsp;<span style="color: black;">{{Genre}}</span></h6>
+            <h6 style="color:red;">RELEASE DATE: &nbsp;<span style="color: black;">{{Released_Date}}</span></h6>
+            <h6 style="color:red;">Director: &nbsp;<span style="color: black;">{{Director}}</span></h6>
+            <h6 style="color:red;max-width: 75%;">Writer: &nbsp;<span style="color: black;">{{Writer}}</span></h6>
+            <h6 style="color:red;">production: &nbsp;<span style="color: black;">{{production}}</span></h6>
+            <h6 style="color:red;">Awards: &nbsp;<span style="color: black;">{{Awards}}</span></h6>
+            <h6 style="color:red;">Actors: &nbsp;<span style="color: black;">{{Actors}}</span></h6>
+            <h6 style="color:red;max-width: 75%; float: left;">Plot: <br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: black;">{{Plot}}</span></h6>
+        </div>
+        <br/>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <hr>
+    {% if movie_cards|length > 1 %}
+    <center><h3 style='color:red'>RECOMMENDED MOVIES FOR YOU</h3></center>
+    <br>
+    <br>
+    <br>
+    <div class="movie-content">
+        {% for Titles,posters in movie_cards.items() if not movie_cards.hidden %}
+            <div class="card" style="width: 15rem;" title="{{Titles}}" onclick="get_poster({{Titles}})">
+            <img class="card-img-top" height="360" width="240" alt="{{Titles}} - posters" src={{posters}}>
+            <figcaption class="fig">
+                <form method="POST">
+                <button type="submit" name='title' class="card-btn btn btn-danger" id ="poster_title" value="{{Titles}}">{{Titles}}</button>
+                </form>
+            </figcaption>
+            <div class="card-body">
+                <h5 class="card-title">{{Titles|capitalize}}</h5>
+            </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+</body>
+</html>
